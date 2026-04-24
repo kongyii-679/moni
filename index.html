@@ -507,4 +507,24 @@
             html += `<p><strong>${i+1}. ${q.text}</strong>（${q.points}分）<br>${q.reference}</p>`;
         });
         html += `<hr><div><strong>📌 典型题目解析（皮肤护理/仪器安全/卫生法规）</strong><br>`;
-        html += `<ul><li
+        html += `<ul><li><strong>关于小气泡清洁仪</strong>：应从低档位开始，根据皮肤耐受度调整，避免同一部位停留超3秒，防止负压损伤。</li>`;
+        html += `<li><strong>关于消毒规范</strong>：一客一换一消毒是强制性要求，金属工具首选压力蒸汽灭菌，化学消毒需保证浓度和时间。</li>`;
+        html += `<li><strong>关于皮肤屏障</strong>：神经酰胺、胆固醇、游离脂肪酸是皮肤屏障三要素，敏感肌护理需补充修复类成分。</li></ul>`;
+        html += `</div>`;
+        return html;
+    }
+
+    function fillRefContent() {
+        const refContainer = document.getElementById("refKeyContent");
+        refContainer.innerHTML = buildReferenceHtml();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        renderQuestions();
+        fillRefContent();
+        document.getElementById("submitBtn").addEventListener("click", () => displayResults());
+        document.getElementById("resetBtn").addEventListener("click", () => resetAll());
+    });
+</script>
+</body>
+</html>
