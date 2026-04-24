@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>国家初级美容师 · 职业技能认定模拟考试 | 升级版题库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8f5f0;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #2c241a;
+            padding: 30px 20px;
+            line-height: 1.5;
+        }
+
+        .exam-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 36px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 30px 35px 50px;
+            transition: all 0.2s;
+        }
+
+        .exam-header {
+            text-align: center;
+            border-bottom: 3px solid #e6cfb0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .exam-header h1 {
+            font-size: 2rem;
+            color: #a5582c;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .exam-header .sub {
+            color: #7a5a44;
+            font-size: 0.9rem;
+            background: #fef2e4;
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .badge-level {
+            background: #e6cfb0;
+            color: #5a3a22;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            background: #fef4e9;
+            padding: 12px 20px;
+            border-radius: 60px;
+            margin: 20px 0 25px;
+            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .info-bar span {
+            color: #b45f2b;
+        }
+        .score-note {
+            font-size: 0.85rem;
+            background: #fff0e2;
+            padding: 6px 12px;
+            border-radius: 30px;
+            color: #a55528;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            background: #fffefc;
+            border-radius: 28px;
+            padding: 6px 0;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f1e2d4, #faf1e7);
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 40px;
+            margin-bottom: 25px;
+            color: #774e2e;
+            border-left: 6px solid #c77a42;
+        }
+
+        .question-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px 25px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+            border: 1px solid #f0e2d4;
+        }
+        .q-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #2c241a;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .q-num {
+            background: #e6cfb0;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #4d2f18;
+        }
+        .q-text {
+            font-weight: 600;
+        }
+        .options {
+            padding-left: 18px;
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            padding: 5px 6px;
+            border-radius: 28px;
+            transition: background 0.1s;
+        }
+        .option:hover {
+            background: #fef3ea;
+        }
+        input[type="radio"], input[type="checkbox"].judge-check {
+            width: 18px;
+            height: 18px;
+            accent-color: #c77a42;
+            cursor: pointer;
+        }
+        .judge-group {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            margin-top: 12px;
+            padding-left: 12px;
+        }
+        .judge-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .essay-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 24px;
+            border: 1.5px solid #e6cfb0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: #fefaf5;
+            resize: vertical;
+            margin-top: 12px;
+        }
+        .essay-textarea:focus {
+            outline: none;
+            border-color: #c77a42;
+            box-shadow: 0 0 0 2px rgba(199,122,66,0.2);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0 25px;
+        }
+        button {
+            background: #c77a42;
+            border: none;
+            padding: 12px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 48px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background: #a5582c;
+            transform: scale(0.98);
+        }
+        .reset-btn {
+            background: #b0a088;
+        }
+        .reset-btn:hover {
+            background: #8e735b;
+        }
+        .result-area {
+            background: #fef2e6;
+            border-radius: 32px;
+            padding: 18px 28px;
+            margin-top: 20px;
+            border-left: 6px solid #c77a42;
+        }
+        .result-summary {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #5a3a22;
+        }
+        .answer-key {
+            background: #fff7ef;
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 25px;
+            font-size: 0.88rem;
+        }
+        .answer-key summary {
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #b45f2b;
+            padding: 8px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #aa8b70;
+            font-size: 0.75rem;
+        }
+        @media (max-width: 700px) {
+            .exam-container {
+                padding: 20px 16px;
+            }
+            .question-card {
+                padding: 15px;
+            }
+        }
+        .highlight {
+            background: #fef0e0;
+        }
+    </style>
+</head>
+<body>
+<div class="exam-container" id="examApp">
+    <div class="exam-header">
+        <h1>💆 国家初级美容师 · 职业技能认定模拟考试</h1>
+        <div class="sub">（2025-2026版 · 初级/五级考核标准）<span class="badge-level">依据最新考纲升级</span></div>
+        <div class="info-bar">
+            <span>📋 单选题 30题 (每题2分) · 判断题 20题 (每题1分) · 简答题 3题 (总分20分)</span>
+            <span class="score-note">✨ 满分100分 | 交卷后自动评分+权威解析</span>
+        </div>
+    </div>
+
+    <div id="questionsRoot"></div>
+
+    <div class="action-buttons">
+        <button id="submitBtn">📝 提交试卷 · 智能评分</button>
+        <button id="resetBtn" class="reset-btn">🔄 重置所有答案</button>
+    </div>
+    <div id="resultPanel" class="result-area" style="display: none;">
+        <div class="result-summary" id="scoreDisplay"></div>
+        <div id="detailFeedback"></div>
+    </div>
+    <div class="answer-key">
+        <details>
+            <summary>📖 参考答案与专家解析（点击展开详细指导）</summary>
+            <div id="refKeyContent"></div>
+        </details>
+    </div>
+    <div class="footer">依据《美容师国家职业技能标准》初级/五级考核要点编制 | 涵盖皮肤生理、仪器操作、卫生法规</div>
+</div>
+
+<script>
+    // ======================= 题库升级版（初级美容师职业技能认定）=======================
+    // 参考2025-2026最新考纲：皮肤生理25%、仪器操作20%、卫生消毒15%、化妆品15%、服务规范10%、中医基础10%、急救5%
+    
+    // 一、单选题（30道，每题2分）
+    const singleChoices = [
+        { text: "中性皮肤的pH值范围通常为？", options: ["A. 4.5-5.5", "B. 5.5-6.5", "C. 6.5-7.5", "D. 7.5-8.5"], correct: "B", explanation: "健康皮肤表面呈弱酸性，pH值在4.5-6.5之间，中性皮肤多在5.5-6.5。" },
+        { text: "下列哪种皮肤类型的特征为角质层薄、遇冷热刺激易泛红？", options: ["A. 油性皮肤", "B. 干性皮肤", "C. 敏感性皮肤", "D. 混合性皮肤"], correct: "C", explanation: "敏感性皮肤屏障功能较弱，角质层薄，对外界刺激反应敏感，易出现泛红、刺痛。" },
+        { text: "化妆品中添加的“透明质酸”主要作用是？", options: ["A. 美白淡斑", "B. 抗衰老", "C. 保湿锁水", "D. 防晒隔离"], correct: "C", explanation: "透明质酸（玻尿酸）是天然保湿因子，可吸收自身重量1000倍的水分，是核心保湿成分。" },
+        { text: "以下哪种美容仪器常用于辅助深层清洁，通过负压吸附毛孔内污垢？", options: ["A. 超声波美容仪", "B. 小气泡清洁仪", "C. 射频仪", "D. 红蓝光治疗仪"], correct: "B", explanation: "小气泡清洁仪利用负压吸力和专用溶液，可有效清除毛孔内油脂和角质栓。" },
+        { text: "神经酰胺在皮肤中的主要作用是？", options: ["A. 美白抑制黑色素", "B. 修复皮肤屏障", "C. 促进胶原合成", "D. 抗炎杀菌"], correct: "B", explanation: "神经酰胺是角质层细胞间脂质的主要成分，对维持皮肤屏障功能至关重要。" },
+        { text: "美容按摩时，操作方向应遵循？", options: ["A. 从下往上、从内往外", "B. 从上往下、从外往内", "C. 任意方向以舒适为主", "D. 仅沿肌肉走向单向"], correct: "A", explanation: "面部按摩应顺应肌纤维和淋巴循环方向，从下往上、从内往外可提拉紧致、促进循环。" },
+        { text: "使用小气泡清洁仪时，以下哪项操作是正确的？", options: ["A. 吸力档位从最高档开始", "B. 同一部位停留超过10秒", "C. 从低档开始并根据皮肤耐受度调整", "D. 无需消毒治疗头"], correct: "C", explanation: "仪器操作应从低能量/低档位开始，根据顾客耐受度逐步调整，避免皮肤损伤。" },
+        { text: "人体表皮层中，具有增殖能力、能不断产生新细胞的层是？", options: ["A. 角质层", "B. 颗粒层", "C. 棘层", "D. 基底层"], correct: "D", explanation: "基底层细胞具有分裂增殖能力，不断产生新细胞向上推移，是表皮细胞的生发层。" },
+        { text: "以下哪种波的特点是可减少声波产生的热效应？", options: ["A. 压缩波", "B. 脉冲波", "C. 间断波", "D. 连续波"], correct: "B", explanation: "脉冲波以短脉冲形式释放能量，中间有停顿，可有效减少热效应累积，更安全。" },
+        { text: "美容院毛巾、面扑等布类物品的正确消毒方式是？", options: ["A. 清水冲洗后晾干", "B. 75%酒精擦拭", "C. 高温蒸汽灭菌或含氯消毒液浸泡", "D. 紫外线照射5分钟"], correct: "C", explanation: "布类物品应采用热力消毒（煮沸/蒸汽）或化学消毒剂浸泡，确保杀灭病原微生物。" },
+        { text: "以下哪种成分可能导致敏感性皮肤过敏反应？", options: ["A. 甘油", "B. 神经酰胺", "C. 香精及防腐剂", "D. 透明质酸钠"], correct: "C", explanation: "香精、防腐剂、色素是常见的致敏原，敏感肌护理应选择无添加产品。" },
+        { text: "面部护理中，“热喷”操作的主要目的是？", options: ["A. 收缩毛孔", "B. 软化角质和皮脂", "C. 减少油脂分泌", "D. 促进化妆品反吸收"], correct: "B", explanation: "热蒸汽可升高皮温、打开毛孔，软化老废角质和堵塞的皮脂，便于后续清洁。" },
+        { text: "关于防晒霜SPF值的描述，正确的是？", options: ["A. SPF值越高对皮肤负担越小", "B. SPF30可阻挡50% UVB", "C. SPF值越高防护时间越长，但负担可能增加", "D. 室内不需要防晒"], correct: "C", explanation: "SPF值越高，防晒剂浓度越高，对皮肤的潜在负担也越大，应根据场景选择合适SPF值。" },
+        { text: "美容师在服务前，以下哪项是必须做的卫生准备？", options: ["A. 仅修剪指甲", "B. 仅佩戴口罩", "C. 修剪指甲、清洁双手、佩戴口罩", "D. 无需特殊准备"], correct: "C", explanation: "美容师操作前应修剪指甲避免划伤，按七步洗手法清洁双手，佩戴口罩防止飞沫污染。" },
+        { text: "以下哪项不属于物理性脱毛方法？", options: ["A. 蜜蜡脱毛", "B. 剃须刀脱毛", "C. 脱毛膏脱毛", "D. 镊子拔毛"], correct: "C", explanation: "脱毛膏利用化学成分（巯基乙酸盐）溶解毛发结构，属于化学性脱毛。" },
+        { text: "油性皮肤形成的主要原因是？", options: ["A. 皮肤缺水", "B. 皮脂腺分泌旺盛", "C. 皮肤老化", "D. 角质层过薄"], correct: "B", explanation: "油性皮肤的核心特征是皮脂腺功能活跃，分泌过多油脂，与激素水平、遗传相关。" },
+        { text: "人体骨骼共有多少块？", options: ["A. 106块", "B. 206块", "C. 306块", "D. 406块"], correct: "B", explanation: "正常成年人骨骼由206块骨组成，包括颅骨、躯干骨和四肢骨。" },
+        { text: "美容院要求美容师遵纪守法，主要目的是？", options: ["A. 追求经济效益", "B. 约束人员行为", "C. 保证服务正常进行与顾客权益", "D. 行业强制性规定"], correct: "C", explanation: "遵纪守法是保障服务质量、维护顾客权益、确保经营合规的基本前提。" },
+        { text: "冷蜡脱毛后，涂抹润肤霜的主要作用是？", options: ["A. 收缩毛孔", "B. 补充水分", "C. 镇静舒缓皮肤", "D. 消除痛痒"], correct: "C", explanation: "脱毛后皮肤受到刺激，涂抹含芦荟、洋甘菊等成分的润肤霜可舒缓和镇静。" },
+        { text: "按压太阳穴的主要功效是？", options: ["A. 明目、柔润眼肌", "B. 缓解头痛、提神醒脑", "C. 通鼻窍", "D. 缓解牙痛"], correct: "B", explanation: "太阳穴是经外奇穴，主治头痛、目疾，按压可缓解头痛、消除疲劳。" },
+        { text: "以下哪种化妆品基质原料的作用不包括？", options: ["A. 固化赋形", "B. 滋润保湿", "C. 调香", "D. 柔滑肤感"], correct: "C", explanation: "调香由香精完成，不属于基质原料的功能；基质原料包括油脂、蜡、粉类等。" },
+        { text: "职业道德要求美容师不应有的行为是？", options: ["A. 诚实守信", "B. 一视同仁", "C. 追求暴利", "D. 遵纪守法"], correct: "C", explanation: "美容师职业道德要求诚信服务、合理收费，不得牟取暴利损害消费者权益。" },
+        { text: "消毒用品应设专人负责，并如何处理？", options: ["A. 天天处理", "B. 不定期检查", "C. 定期检查，发现问题及时处理", "D. 使用前检查"], correct: "C", explanation: "消毒用品管理需专人负责、定期检查，确保消毒剂浓度有效、不过期。" },
+        { text: "使用美容放大镜前，应先用什么遮盖顾客眼部？", options: ["A. 热毛巾", "B. 湿棉片", "C. 干棉片", "D. 纸巾"], correct: "B", explanation: "湿棉片可保护眼睛免受强光刺激，同时更贴合皮肤。" },
+        { text: "当超声波传入皮肤后，组织细胞间的振动摩擦使什么能变成热能？", options: ["A. 化学能", "B. 机械能", "C. 电能", "D. 光能"], correct: "B", explanation: "超声波的高频振动使介质质点摩擦，机械能转化为热能，产生温热效应。" },
+        { text: "春季皮肤容易出现的变化是？", options: ["A. 化妆品吸收能力下降", "B. 皮脂腺分泌旺盛", "C. 皮肤颜色变深", "D. 角质层增厚"], correct: "B", explanation: "春季人体新陈代谢活跃，皮脂腺和汗腺分泌增加，皮肤易出油、易过敏。" },
+        { text: "动脉是哪种类型的管状器官？", options: ["A. 厚壁、良好弹性", "B. 厚壁、较小弹性", "C. 薄壁、良好弹性", "D. 薄壁、较小弹性"], correct: "A", explanation: "动脉壁厚，富含弹性纤维和平滑肌，可承受高压并维持弹性。" },
+        { text: "凝胶类化妆品的主要特点是？", options: ["A. 粉类含量多", "B. 液体含量多", "C. 蜡类含量多", "D. 油份含量多"], correct: "B", explanation: "凝胶类产品以水、丁二醇等为基质，质地清爽，适合油性及夏季使用。" },
+        { text: "面部基础清洁的第一步是？", options: ["A. 使用磨砂膏", "B. 热喷", "C. 卸除彩妆", "D. 涂抹洁面乳"], correct: "C", explanation: "标准流程应先卸妆溶解油性污垢，再进行洁面，确保彻底清洁。" },
+        { text: "美容师在处理顾客突发过敏时，首要步骤是？", options: ["A. 继续护理完成操作", "B. 立即停止使用可疑产品，清洗皮肤，评估症状严重程度", "C. 给顾客服用抗过敏药", "D. 忽略并继续服务"], correct: "B", explanation: "发生过敏应立即停用产品、清洁皮肤，根据症状严重程度决定是否就医。" }
+    ];
+
+    // 二、判断题（20道，每题1分）
+    const judgeQuestions = [
+        { text: "使用电动美容仪器前无需检查电源线是否完好。", correct: false, explanation: "使用前必须检查电源线、插头是否完好，防止漏电安全事故。" },
+        { text: "美容师在服务顾客前必须进行手部消毒。", correct: true, explanation: "手部消毒是防止交叉感染的基本卫生要求，可用75%酒精或免洗消毒液。" },
+        { text: "敏感性皮肤可以频繁使用去角质产品来促进新陈代谢。", correct: false, explanation: "敏感肌屏障功能弱，频繁去角质会加重损伤，建议每月不超过1次或避免。" },
+        { text: "防晒霜的SPF值越高，对皮肤的负担越小。", correct: false, explanation: "SPF值越高，防晒剂浓度越高，可能增加皮肤负担和刺激风险。" },
+        { text: "美容工具中的粉刺针使用前需用75%酒精浸泡至少30分钟消毒。", correct: true, explanation: "金属工具使用前应浸泡消毒30分钟以上，或采用高压蒸汽灭菌。" },
+        { text: "油性皮肤护理时，应选择质地厚重的乳霜类护肤品。", correct: false, explanation: "油性皮肤应选择清爽型乳液、凝胶类产品，避免堵塞毛孔。" },
+        { text: "面膜使用时间越长，皮肤吸收的营养越多。", correct: false, explanation: "面膜使用时间过长会导致皮肤过度水合、屏障受损，一般15-20分钟为宜。" },
+        { text: "化学药剂应储藏在湿热的地方以保持活性。", correct: false, explanation: "化学药剂应储存在阴凉、干燥、通风处，避免高温潮湿导致变质。" },
+        { text: "面部按摩后的皮肤状态可以为面膜疗法提供有利的吸收条件。", correct: true, explanation: "按摩促进血液循环、提升皮温，使皮肤处于良好吸收状态，利于面膜成分渗透。" },
+        { text: "美容师只要自己埋头苦练技艺，不必向同行学习。", correct: false, explanation: "美容师应终身学习、交流切磋，向同行学习可开阔眼界、提升技术。" },
+        { text: "做基础化妆时，高光色应涂抹于T形区、眼角三角区等部位。", correct: true, explanation: "高光用于提亮需要突出的部位，使面部轮廓更立体饱满。" },
+        { text: "磨砂膏脱屑时，使用推抹手法效果最好。", correct: false, explanation: "磨砂膏应采用打圈手法，温和去除老废角质，避免推抹拉扯皮肤。" },
+        { text: "表情肌收缩时可以产生皱纹。", correct: true, explanation: "表情肌反复收缩牵拉皮肤，动态纹逐渐固化为静态皱纹。" },
+        { text: "使用泡沫灭火剂扑灭油类火灾，属于隔离灭火法。", correct: false, explanation: "泡沫覆盖燃烧物表面隔绝氧气，属于窒息灭火法。" },
+        { text: "美容院的前台接待主要负责为客人做美容护理。", correct: false, explanation: "前台主要负责接待、预约、收银等工作，护理由美容技师完成。" },
+        { text: "使用美白产品时，应避免直接接触眼睛。", correct: true, explanation: "美白成分可能刺激眼部，操作时需避开眼周，若不慎入眼应立即冲洗。" },
+        { text: "美容师应尊重顾客的隐私，避免泄露顾客信息。", correct: true, explanation: "保护顾客隐私是职业道德的基本要求，包括个人信息、皮肤状况等。" },
+        { text: "喷雾仪发出“咯咯”声，表示仪器内水量太少。", correct: false, explanation: "咯咯声通常因注水过多或内部有气泡，水量太少会不出雾或噪音异常。" },
+        { text: "为干性皮肤顾客设计护理流程时，应重点加强深层清洁步骤。", correct: false, explanation: "干性皮肤应重点加强补水保湿，深层清洁频率应降低，避免破坏皮脂膜。" },
+        { text: "美容师操作前需修剪指甲并佩戴口罩，避免交叉感染。", correct: true, explanation: "修剪指甲、佩戴口罩是标准卫生操作规范，保障顾客安全。" }
+    ];
+
+    // 三、简答题（3道，共20分，分值分配：第1题6分，第2题7分，第3题7分）
+    const essayQuestions = [
+        { text: "简述面部基础清洁的标准步骤及各步骤的作用。", points: 6, reference: "①卸除彩妆：使用卸妆产品溶解油溶性污垢和化妆品；②温水湿润：打开毛孔，为清洁做准备；③涂抹洁面乳并打圈按摩：去除表面污垢和多余油脂；④清水彻底冲洗：避免洁面产品残留；⑤冷毛巾轻敷或爽肤水：收缩毛孔，平衡皮肤pH值。每个步骤1-2分，完整得满分。" },
+        { text: "美容院卫生管理中，对美容工具的消毒要求主要有哪些？请列出至少4项。", points: 7, reference: "①分类消毒：金属工具（粉刺针、镊子）用75%酒精浸泡30分钟或高压蒸汽灭菌；布类（毛巾、床单）用含氯消毒液浸泡或高温煮沸；②一客一换一消毒：所有接触皮肤的工具每服务一位顾客必须更换消毒；③正确存储：消毒后工具放入带盖清洁容器，标注日期，避免二次污染；④一次性物品（棉片、棉签）用后即弃，严禁重复使用；⑤消毒液定期更换并检测浓度。每项1.5-2分。" },
+        { text: "请列举5种常见面部按摩手法，并说明其中两种的操作要点。", points: 7, reference: "常见手法：①推法（指腹或掌根单向直线推动，力度均匀）；②揉法（指腹环形揉动，带动皮下组织）；③点按法（指端垂直按压穴位，由轻到重再轻，停留2-3秒）；④捏法（拇指与四指相对捏提皮肤）；⑤拍打法（手掌虚拍，频率适中）。操作要点示例：推法需单向直线，避免来回摩擦；点按法需垂直施力，停留时切勿滑动。" }
+    ];
+
+    // 存储答案
+    let singleAnswers = new Array(30).fill(null);
+    let judgeAnswers = new Array(20).fill(null);
+    let essayAnswers = new Array(3).fill("");
+
+    // 渲染考题
+    function renderQuestions() {
+        const root = document.getElementById("questionsRoot");
+        root.innerHTML = "";
+
+        // 单选题区域
+        const singleSection = document.createElement("div");
+        singleSection.className = "section";
+        singleSection.innerHTML = `<div class="section-title">📝 一、单选题（每题2分，共60分）</div>`;
+        singleChoices.forEach((q, idx) => {
+            const card = document.createElement("div");
+            card.className = "question-card";
+            card.innerHTML = `
+                <div class="q-title"><span class="q-num">第 ${idx+1} 题</span> <span class="q-text">${q.text}</span></div>
+                <div class="options" id="single-opts-${idx}"></div>
+            `;
+            const optsDiv = card.querySelector(`#single-opts-${idx}`);
+            q.options.forEach(opt => {
+                const optVal = opt.charAt(0);
+                const label = document.createElement("label");
+                label.className = "option";
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = `single_${idx}`;
+                radio.value = optVal;
+                if (singleAnswers[idx] === optVal) radio.checked = true;
+                radio.addEventListener("change", (e) => {
+                    if (e.target.checked) singleAnswers[idx] = optVal;
+                });
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(` ${opt}`));
+                optsDiv.appendChild(label);
+            });
+            singleSection.appendChild(card);
+        });
+        root.appendChild(singleSection);
+
+        // 判断题区域
+        const judgeSection = document.createElement("div");
+        judgeSection.className = "section";
+        judgeSection.innerHTML = `<div class="section-title">⚖️ 二、判断题（每题1分，共20分，正确✓ 错误✗）</div>`;
+        judgeQuestions.forEach((q, idx) => {
+            const card = document.createElement("div");
+            card.className = "question-card";
+            const selected = judgeAnswers[idx];
+            card.innerHTML = `
+                <div class="q-title"><span class="q-num">判断 ${idx+1}</span> <span class="q-text">${q.text}</span></div>
+                <div class="judge-group">
+                    <label class="judge-label"><input type="radio" name="judge_${idx}" value="true" ${selected === true ? 'checked' : ''}> ✓ 正确</label>
+                    <label class="judge-label"><input type="radio" name="judge_${idx}" value="false" ${selected === false ? 'checked' : ''}> ✗ 错误</label>
+                </div>
+            `;
+            const radios = card.querySelectorAll(`input[name="judge_${idx}"]`);
+            radios.forEach(radio => {
+                radio.addEventListener("change", (e) => {
+                    judgeAnswers[idx] = e.target.value === "true";
+                });
+            });
+            judgeSection.appendChild(card);
+        });
+        root.appendChild(judgeSection);
+
+        // 简答题区域
+        const essaySection = document.createElement("div");
+        essaySection.className = "section";
+        essaySection.innerHTML = `<div class="section-title">✍️ 三、简答题（共20分，请根据要点作答）</div>`;
+        essayQuestions.forEach((q, idx) => {
+            const card = document.createElement("div");
+            card.className = "question-card";
+            card.innerHTML = `
+                <div class="q-title"><span class="q-num">简答 ${idx+1}</span> <span class="q-text">${q.text}</span> <span style="color:#a5582c; font-size:0.8rem;">（${q.points}分）</span></div>
+                <textarea class="essay-textarea" rows="3" placeholder="请在此输入你的答案..."></textarea>
+            `;
+            const textarea = card.querySelector("textarea");
+            textarea.value = essayAnswers[idx] || "";
+            textarea.addEventListener("input", (e) => { essayAnswers[idx] = e.target.value; });
+            essaySection.appendChild(card);
+        });
+        root.appendChild(essaySection);
+    }
+
+    // 评分：客观题完全按答案计分，简答题显示参考答案供自评（不计入自动总分以尊重主观性）
+    function computeScore() {
+        let total = 0;
+        // 单选题 每题2分
+        for (let i=0; i<singleChoices.length; i++) {
+            if (singleAnswers[i] && singleAnswers[i] === singleChoices[i].correct) total += 2;
+        }
+        // 判断题 每题1分
+        for (let i=0; i<judgeQuestions.length; i++) {
+            if (judgeAnswers[i] !== null && judgeAnswers[i] === judgeQuestions[i].correct) total += 1;
+        }
+        return { objTotal: total, objMax: 80 };
+    }
+
+    function displayResults() {
+        const { objTotal } = computeScore();
+        const panel = document.getElementById("resultPanel");
+        const scoreDiv = document.getElementById("scoreDisplay");
+        const detailDiv = document.getElementById("detailFeedback");
+        
+        scoreDiv.innerHTML = `📊 客观题得分：<strong style="font-size:1.4rem;">${objTotal}</strong> / 80 分 （单选题+判断题）<br>📝 简答题共20分，请对照下方参考答案自行评估总分，总满分100分。<br><span style="font-size:0.85rem;">合格线：60分（客观题48分+简答题12分）</span>`;
+        
+        // 错题统计提示
+        let wrongSingle = [];
+        for (let i=0; i<singleChoices.length; i++) {
+            if (!singleAnswers[i] || singleAnswers[i] !== singleChoices[i].correct) wrongSingle.push(i+1);
+        }
+        let wrongJudge = [];
+        for (let i=0; i<judgeQuestions.length; i++) {
+            if (judgeAnswers[i] === null || judgeAnswers[i] !== judgeQuestions[i].correct) wrongJudge.push(i+1);
+        }
+        if (wrongSingle.length || wrongJudge.length) {
+            detailDiv.innerHTML = `<span>⚠️ 未答或错题提醒：单选题第 ${wrongSingle.join(', ')} 题；判断题第 ${wrongJudge.join(', ')} 题。建议查看下方解析巩固。</span><br>`;
+        } else {
+            detailDiv.innerHTML = `<span>🎉 客观题全对！专业知识扎实，继续完善简答题即可。</span><br>`;
+        }
+        panel.style.display = "block";
+        panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetAll() {
+        singleAnswers.fill(null);
+        judgeAnswers.fill(null);
+        essayAnswers.fill("");
+        renderQuestions();
+        const panel = document.getElementById("resultPanel");
+        panel.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function buildReferenceHtml() {
+        let html = `<div style="font-weight:600; margin-bottom:10px;">✨ 权威参考答案与解析（依据国家职业技能标准）</div>`;
+        html += `<div><strong>【一、单选题答案】</strong><br>`;
+        singleChoices.forEach((q,i)=> { html += `${i+1}.${q.correct} `; });
+        html += `</div><div style="margin:12px 0;"><strong>【二、判断题答案】</strong><br>`;
+        judgeQuestions.forEach((q,i)=> { html += `${i+1}.${q.correct ? "✓" : "✗"} `; });
+        html += `</div><div><strong>【三、简答题参考要点】</strong><br>`;
+        essayQuestions.forEach((q,i)=> { 
+            html += `<p><strong>${i+1}. ${q.text}</strong>（${q.points}分）<br>${q.reference}</p>`;
+        });
+        html += `<hr><div><strong>📌 典型题目解析（皮肤护理/仪器安全/卫生法规）</strong><br>`;
+        html += `<ul><li
